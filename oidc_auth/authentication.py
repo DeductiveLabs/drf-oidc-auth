@@ -68,7 +68,10 @@ class BearerTokenAuthentication(BaseOidcAuthentication):
 
     @cache(ttl=api_settings.OIDC_BEARER_TOKEN_EXPIRATION_TIME)
     def get_userinfo(self, token):
-        response = requests.get(self.oidc_config['userinfo_endpoint'],
+        userinfo_endpoint = api_settings.OIDC_USERINFO_ENDPOINT
+        if userinfo_endpoint == '':
+            userinfo_endpoint = self.oidc_config['userinfo_endpoint']
+        response = requests.get(userinfo_endpoint,
                                 headers={'Authorization': 'Bearer {0}'.format(token.decode('ascii'))})
         response.raise_for_status()
 

@@ -9,6 +9,9 @@ DEFAULTS = {
     'OIDC_ENDPOINTS': {},
     'OIDC_AUDIENCES': None,
 
+    # Custom userinfo_enpoint
+    'OIDC_USERINFO_ENDPOINT': '',
+
     # Number of seconds in the past valid tokens can be issued
     'OIDC_LEEWAY': 600,
 
